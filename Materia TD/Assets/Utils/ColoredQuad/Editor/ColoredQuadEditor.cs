@@ -17,6 +17,7 @@ public class ColoredQuadEditor : Editor {
         _quad = (ColoredQuad)target;
         _renderer = _quad.GetComponent<MeshRenderer>();
         _meshFilter = _quad.GetComponent<MeshFilter>();
+
         Type internalEditorUtilityType = typeof(InternalEditorUtility);
         PropertyInfo sortingLayersProperty = internalEditorUtilityType.GetProperty("sortingLayerNames", BindingFlags.Static | BindingFlags.NonPublic);
         _sortingLayers = (string[])sortingLayersProperty.GetValue(null, new object[0]);
@@ -26,11 +27,12 @@ public class ColoredQuadEditor : Editor {
     {
         GUILayout.BeginHorizontal();
 		EditorGUI.BeginChangeCheck ();
+
 		int order = EditorGUILayout.Popup("Sorting layer", _renderer.sortingLayerID, _sortingLayers);
         if (EditorGUI.EndChangeCheck ()) 
 		{
 			_renderer.sortingLayerID = order;
-			_renderer.sortingLayerName = _sortingLayers[order];
+			//_renderer.sortingLayerName = _sortingLayers[order];
 		}
 		GUILayout.EndHorizontal();
 
