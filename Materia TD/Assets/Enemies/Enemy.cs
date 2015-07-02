@@ -3,24 +3,20 @@ using System.Collections;
 
 public class Enemy : MonoBehaviour {
 
-	public Vector3[] path;
+	public Vector2[] path;
 	public float speed = 1f;
+
 	private int currentNode = 0;
     private bool isActive = true;
     private Vector2 move_dir;
-    private Animator _animator;
 
-    public delegate void EndReachedHandler(GameObject source);
-    public event EndReachedHandler OnEndReached;
-
-	public float time = 0f;
+	private float time = 0f;
 
 	void Start () {
-        //_animator = transform.GetChild(0).GetComponent<Animator>();
+
 	}
 
 	void Update () {
-        /*
         if (!isActive) return;
         Vector2 position = transform.position;
         Vector2 nodePos = path[currentNode];
@@ -31,8 +27,9 @@ public class Enemy : MonoBehaviour {
         {
             if (++currentNode == path.Length)
             {
-                OnEndReached.Invoke(gameObject);
+                //OnEndReached.Invoke(gameObject);
                 //GetComponent<Animator>().SetBool("Explode", true);
+                Die();
                 isActive = false;
             }
             else
@@ -42,13 +39,13 @@ public class Enemy : MonoBehaviour {
                 transform.position = position + move_dir * speed * Time.deltaTime;
                 //_animator.SetFloat("SpeedX", move_dir.x);
                 //_animator.SetFloat("SpeedY", move_dir.y);
-                _animator.SetBool("horizontal_move", Mathf.Abs(move_dir.x) > 0.1f);
+                //_animator.SetBool("horizontal_move", Mathf.Abs(move_dir.x) > 0.1f);
             }
         } 
 		else 
 		{
             transform.position = position + move_dir * speed * Time.deltaTime;
-		}*/
+		}
 	}
 
     public void Die()

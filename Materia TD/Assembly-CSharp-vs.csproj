@@ -47,18 +47,20 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Enemies\Enemy.cs" />
+     <Compile Include="Assets\PointsOfPassage\Spawner.cs" />
      <Compile Include="Assets\SCamera.cs" />
      <Compile Include="Assets\SCursor.cs" />
      <Compile Include="Assets\TileMap\BorderedTilemapController.cs" />
      <Compile Include="Assets\TileMap\Brush.cs" />
      <Compile Include="Assets\TileMap\Grid.cs" />
+     <Compile Include="Assets\TileMap\Navigation\Navigation.cs" />
+     <Compile Include="Assets\TileMap\Navigation\PathFinder.cs" />
      <Compile Include="Assets\TileMap\TileMap.cs" />
      <Compile Include="Assets\TileMap\TileMapInGameEditor.cs" />
      <Compile Include="Assets\Utils\Collections\BinaryHeap.cs" />
      <Compile Include="Assets\Utils\ColoredQuad\ColoredQuad.cs" />
      <Compile Include="Assets\Utils\Debug\HUDFPS.cs" />
      <Compile Include="Assets\Utils\Path\BesierPath2D.cs" />
-     <Compile Include="Assets\Utils\Path\PathFinder.cs" />
      <Compile Include="Assets\Utils\Structs\IntVec2.cs" />
      <Compile Include="Assets\Utils\Structs\Plane2D.cs" />
      <None Include="Assets\Utils\ColoredQuad\ColoredQuad.shader" />

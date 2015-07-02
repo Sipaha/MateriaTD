@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class TileMap : MonoBehaviour, IEnumerable, ISerializationCallbackReceiver
 {
+    public delegate void ChangeHandler(IntVec2 position, GameObject newTile);
+    public event ChangeHandler OnChange;
+
     [SerializeField]
     private int _sortingLayer;
     public int SortingLayer
@@ -55,6 +58,10 @@ public class TileMap : MonoBehaviour, IEnumerable, ISerializationCallbackReceive
     {
         _tiles.Add(pos, tile);
         tile.transform.parent = transform;
+        if (OnChange != null)
+        {
+            OnChange.Invoke(pos, tile);
+        }
     }
 
     public GameObject RemoveTile(IntVec2 pos)
@@ -63,6 +70,10 @@ public class TileMap : MonoBehaviour, IEnumerable, ISerializationCallbackReceive
         if (tile != null)
         {
             _tiles.Remove(pos);
+            if (OnChange != null)
+            {
+                OnChange.Invoke(pos, null);
+            }
             return tile;
         }
         else return null;

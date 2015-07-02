@@ -45,6 +45,16 @@ public struct IntVec2
         return Mathf.Sqrt(deltaX * deltaX + deltaY * deltaY);
     }
 
+    public static IntVec2 operator +(IntVec2 v1, IntVec2 v2)
+    {
+        return new IntVec2(v1.X + v2.X, v1.Y + v2.Y);
+    }
+
+    public static IntVec2 operator -(IntVec2 v1, IntVec2 v2)
+    {
+        return new IntVec2(v1.X - v2.X, v1.Y - v2.Y);
+    }
+
     public static implicit operator Vector2(IntVec2 point)
     {
         return new Vector2(point.X, point.Y);

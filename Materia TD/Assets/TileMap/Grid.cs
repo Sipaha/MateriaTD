@@ -11,6 +11,11 @@ public class Grid : MonoBehaviour {
     public Color Color = new Color(26.0f / 255, 148.0f / 255, 26.0f / 255, 72.0f / 255);
     public bool DrawGrid = true;
 
+    private IntVec2[] squareMoveDirections = {new IntVec2(-1, 0),
+                                              new IntVec2(1, 0),
+                                              new IntVec2(0, -1),
+                                              new IntVec2(0, 1)};
+
     public IntVec2 ToCoordinates(Vector2 vec)
     {
         switch (Type)
@@ -74,6 +79,11 @@ public class Grid : MonoBehaviour {
     public Vector2 Snap(Vector2 vec)
     {
         return ToWorld(ToCoordinates(vec));
+    }
+
+    public IntVec2[] GetMoveDirections()
+    {
+        return squareMoveDirections;
     }
 
     void OnDrawGizmos()

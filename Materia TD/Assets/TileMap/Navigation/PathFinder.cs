@@ -22,19 +22,16 @@ public class PathFinder {
     private BinaryHeap<Node> openNodes = new BinaryHeap<Node>();
     private HashSet<IntVec2> closedNodes = new HashSet<IntVec2>();
 
-    public Vector3[] FindPath(Vector3 from, Vector3 to, TileMap map, Grid grid)
+    public IntVec2[] FindPath(IntVec2 from, IntVec2 to, bool[,] pathMap, IntVec2[] moveDirections)
     {
-        IntVec2 fromPoint = grid.ToCoordinates(from);
-        IntVec2 toPoint = grid.ToCoordinates(to);
-
         openNodes.Clear();
         closedNodes.Clear();
 
         Node searchNode = new Node();
-        searchNode.point = fromPoint;
+        searchNode.point = from;
         bool endReached = false;
 
-        Plane2D directPath = new Plane2D(fromPoint, toPoint);
+        Plane2D directPath = new Plane2D(from, to);
        
         openNodes.Add(searchNode, 0);
 
@@ -42,44 +39,32 @@ public class PathFinder {
         {
             searchNode = openNodes.Pop();
 
-            if (searchNode.point.Equals(toPoint)) {
+            if (searchNode.point.Equals(to)) {
                 endReached = true;
                 break;
             }
 
             IntVec2 p = searchNode.point;
 
-            IntVec2 left = p.Left;
-            IntVec2 right = p.Right;
-            IntVec2 up = p.Up;
-            IntVec2 down = p.Down;
-
-            if (map.Contains(left) && !closedNodes.Contains(left)) 
-			{
-                AddOpenNode(searchNode, left, toPoint, directPath);
-			}
-            if (map.Contains(right) && !closedNodes.Contains(right)) 
-			{
-                AddOpenNode(searchNode, right, toPoint, directPath);
-			}
-            if (map.Contains(down) && !closedNodes.Contains(down)) 
-			{
-                AddOpenNode(searchNode, down, toPoint, directPath);
-			}
-            if (map.Contains(up) && !closedNodes.Contains(up)) 
-			{
-                AddOpenNode(searchNode, up, toPoint, directPath);
-			}
-
+            foreach (IntVec2 direction in moveDirections)
+            {
+                IntVec2 newPos = p + direction;
+                if (newPos.X >= 0 && newPos.X < pathMap.GetLength(0) &&
+                    newPos.Y >= 0 && newPos.Y < pathMap.GetLength(1) &&
+                    pathMap[newPos.X, newPos.Y] && !closedNodes.Contains(newPos))
+                {
+                    AddOpenNode(searchNode, newPos, to, directPath);
+                }
+            }
             closedNodes.Add(searchNode.point);
         }
 
         if (endReached)
         {
-            Vector3[] path = new Vector3[searchNode.steps + 1];
+            IntVec2[] path = new IntVec2[searchNode.steps + 1];
             for (int i = searchNode.steps; i >= 0; i--)
             {
-                path[i] = grid.ToWorld(searchNode.point);
+                path[i] = searchNode.point;
                 searchNode = searchNode.from;
             }
 
