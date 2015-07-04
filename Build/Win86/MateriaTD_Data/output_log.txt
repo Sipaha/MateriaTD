@@ -16,7 +16,7 @@ Platform assembly: D:\Programming\DefenceU5\Build\Win86\MateriaTD_Data\Managed\U
 Loading D:\Programming\DefenceU5\Build\Win86\MateriaTD_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: D:\Programming\DefenceU5\Build\Win86\MateriaTD_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading D:\Programming\DefenceU5\Build\Win86\MateriaTD_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
-- Completed reload, in  0.036 seconds
+- Completed reload, in  0.037 seconds
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.

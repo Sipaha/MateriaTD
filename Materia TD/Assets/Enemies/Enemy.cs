@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour {
 
 	private float time = 0f;
 
+    public int EndDamage = 1;
+
 	void Start () {
 
 	}
